@@ -18,3 +18,19 @@
                                         {:input (lines "-6" "+3" "+8" "+5" "-6") :expected "5"}
                                         {:input (lines "+7" "+7" "-2" "-7" "-4") :expected "14"}]]
         (is (= expected (find-frequency-calibrator-duplicate input))))))
+
+(deftest box-id-checksum-test
+  (testing
+      (is (= "12" (box-hash-sum (lines "abcdef"
+                                     "bababc"
+                                     "abbcde"
+                                     "abcccd"
+                                     "aabcdd"
+                                     "abcdee"
+                                     "ababab"))))))
+(deftest box-id-checksum-test
+  (testing
+      (is (= "fgij" (common-letters-for-ids-differing-one-character (lines "abcde"
+                                                                           "fghij"
+                                                                           "axcye"
+                                                                           "fguij"))))))
