@@ -42,18 +42,13 @@
 
 (defn common-letters-for-ids-differing-one-character [input]
   (->> (read-list-of-strings input)
-       (map vec)
-       ((fn [char-vecs]
-          (mapcat (fn [char-vec1]
-                    (mapcat (fn [char-vec2]
-                              (let [[_ _ common] (data/diff char-vec2 char-vec1)]
-                                (if (and (= (count common) (count char-vec1))
-                                         (= 1 (count (filter nil? common))))
-                                  [(apply str common)])))
-                            char-vecs))
-                  char-vecs)))
-       (into #{})
-       (str/join "\n")))
+       ((fn [list]
+          (mapcat (fn [first]
+                 (map (fn[second]
+                        [ first second ]) list)
+                 ) list)))
+       (count)
+       ))
 
 (defn -main
   [& args]
